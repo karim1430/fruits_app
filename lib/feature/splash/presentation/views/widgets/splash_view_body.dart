@@ -13,7 +13,7 @@ class _SplashViewBodyState extends State<SplashViewBody> {
   @override
   void initState() {
     Future.delayed(const Duration(seconds: 3), () {
-      Navigator.pushReplacementNamed(context, Routes.homeView);
+      Navigator.pushReplacementNamed(context, Routes.onboardingView);
       setState(() {}); // Use your home route name
     });
     super.initState();

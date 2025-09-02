@@ -3,6 +3,7 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:fruits_hub/core/routing/routes.dart';
 import 'package:fruits_hub/feature/home/presentation/views/home_view.dart';
+import 'package:fruits_hub/feature/onboarding/presentation/views/onboarding_view.dart';
 import 'package:fruits_hub/feature/splash/presentation/views/splash_view.dart';
 
 class AppRouter {
@@ -13,6 +14,8 @@ class AppRouter {
 
       case Routes.homeView:
         return _createRoute(const HomeView());
+      case Routes.onboardingView:
+        return _createRoute(const OnboardingView());
       // case Routes.splashScreen:
       //   return _createRoute(const SplashScreen());
       // case Routes.onBoardingScreen:
