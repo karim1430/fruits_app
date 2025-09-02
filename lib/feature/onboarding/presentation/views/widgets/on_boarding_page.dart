@@ -8,6 +8,7 @@ class OnboardPage extends StatelessWidget {
   final String imageAsset;
   final Color imageColor;
   final String centerImageAsset;
+  final bool isLastPage;
 
   const OnboardPage({
     super.key,
@@ -16,6 +17,7 @@ class OnboardPage extends StatelessWidget {
     required this.imageAsset,
     required this.imageColor,
     required this.centerImageAsset,
+    required this.isLastPage,
   });
 
   @override
@@ -26,24 +28,36 @@ class OnboardPage extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.start,
       children: [
         SizedBox(
-          // تم إضافة SizedBox لضبط الارتفاع والعرض
           width: MediaQuery.of(context).size.width,
           height: screenHeight * 0.4,
           child: Stack(
-            fit: StackFit.expand, // لجعل Stack يأخذ المساحة المتاحة بالكامل
+            fit: StackFit.expand,
             alignment: Alignment.center,
             children: [
               SvgPicture.asset(
                 imageAsset,
                 width: double.infinity,
                 height: double.infinity,
-                fit: BoxFit.fill, // لملء المساحة بالكامل
+                fit: BoxFit.fill,
                 color: imageColor,
               ),
               Positioned(
                 bottom: 0,
                 child: SvgPicture.asset(centerImageAsset, height: 180),
               ),
+              isLastPage
+                  ? SizedBox()
+                  : Padding(
+                      padding: const EdgeInsets.all(22.0),
+                      child: Positioned(
+                        child: Text(
+                          'تخطي',
+                          style: TextStyle(
+                            color: Colors.black.withValues(alpha: 0.6),
+                          ),
+                        ),
+                      ),
+                    ),
             ],
           ),
         ),

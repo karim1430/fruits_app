@@ -32,6 +32,7 @@ dependencies:
   flutter:
     sdk: flutter
   flutter_launcher_icons: ^0.14.4
+  flutter_localization: ^0.3.3
   flutter_native_splash: ^2.4.6
   flutter_svg: ^2.2.0
   google_fonts: ^6.3.1
@@ -82,3 +83,12 @@ flutter_launcher_icons:
   ios: true
   image_path: "assets/fruits_logo.png"
   min_sdk_android: 21 # android min sdk min:16, default 21
+flutter_intl:
+  enabled: true
+
+
+flutter_assets:
+  assets_path: assets/
+  output_path: lib/core/utils/
+  filename: assets.dart
+  field_prefix:

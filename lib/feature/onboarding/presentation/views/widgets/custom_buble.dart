@@ -10,9 +10,9 @@ class CustomBuble extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        _buildIndicator(isActive: true),
-        const SizedBox(width: 8),
         _buildIndicator(isActive: isLastPage),
+        const SizedBox(width: 8),
+        _buildIndicator(isActive: true),
       ],
     );
   }

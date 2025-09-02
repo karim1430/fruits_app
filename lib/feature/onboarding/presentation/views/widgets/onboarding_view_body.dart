@@ -31,6 +31,7 @@ class _OnboardingViewBodyState extends State<OnboardingViewBody> {
           children: [
             Expanded(
               child: PageView(
+                reverse: true,
                 controller: pageController,
                 onPageChanged: (index) {
                   setState(() => isLastPage = index == 1);
@@ -43,6 +44,7 @@ class _OnboardingViewBodyState extends State<OnboardingViewBody> {
                     imageAsset: 'assets/Vector.svg',
                     imageColor: Colors.orange.shade100,
                     centerImageAsset: 'assets/fruit basket.svg',
+                    isLastPage: isLastPage,
                   ),
                   OnboardPage(
                     title: 'ابحث وتسوق',
@@ -51,6 +53,7 @@ class _OnboardingViewBodyState extends State<OnboardingViewBody> {
                     imageAsset: 'assets/Vector.svg',
                     imageColor: Colors.green.shade200,
                     centerImageAsset: 'assets/pineapple.svg',
+                    isLastPage: isLastPage,
                   ),
                 ],
               ),
