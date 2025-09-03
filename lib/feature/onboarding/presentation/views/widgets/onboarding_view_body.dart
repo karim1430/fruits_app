@@ -74,7 +74,7 @@ class _OnboardingViewBodyState extends State<OnboardingViewBody> {
                 ),
                 onPressed: () {
                   if (isLastPage) {
-                    Navigator.pushReplacementNamed(context, Routes.homeView);
+                    Navigator.pushNamed(context, Routes.loginView);
                   } else {
                     pageController.nextPage(
                       duration: const Duration(milliseconds: 300),

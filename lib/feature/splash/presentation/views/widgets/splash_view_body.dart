@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:fruits_hub/core/routing/routes.dart';
+import 'package:fruits_hub/core/utils/assets.dart';
 
 class SplashViewBody extends StatefulWidget {
   const SplashViewBody({super.key});
@@ -33,7 +34,7 @@ class _SplashViewBodyState extends State<SplashViewBody> {
             height: 200,
           ),
         ),
-        SvgPicture.asset('assets/circles.svg'),
+        SvgPicture.asset(Assets.circles),
       ],
     );
   }

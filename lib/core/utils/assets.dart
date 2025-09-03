@@ -29,4 +29,7 @@ class Assets {
   /// Assets for vector
   /// assets/Vector.svg
   static const String vector = "assets/Vector.svg";
+  static const String google = 'assets/googleLogo.svg';
+  static const String facebook = 'assets/facebookLogo.svg';
+  static const String apple = 'assets/appleLogo.svg';
 }
