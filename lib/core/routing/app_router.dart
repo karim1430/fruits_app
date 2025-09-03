@@ -3,7 +3,10 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:fruits_hub/core/routing/routes.dart';
 import 'package:fruits_hub/feature/home/presentation/views/home_view.dart';
+import 'package:fruits_hub/feature/login/presentation/views/check_view.dart';
 import 'package:fruits_hub/feature/login/presentation/views/login_view.dart';
+import 'package:fruits_hub/feature/login/presentation/views/new_password_view.dart';
+import 'package:fruits_hub/feature/login/presentation/views/password_recovery_view.dart';
 import 'package:fruits_hub/feature/onboarding/presentation/views/onboarding_view.dart';
 import 'package:fruits_hub/feature/splash/presentation/views/splash_view.dart';
 
@@ -19,6 +22,12 @@ class AppRouter {
         return _createRoute(const OnboardingView());
       case Routes.loginView:
         return _createRoute(const LoginView());
+      case Routes.passwordRecoveryView:
+        return _createRoute(PasswordRecoveryView());
+      case Routes.checkView:
+        return _createRoute(CheckView());
+      case Routes.newPasswordView:
+        return _createRoute(NewPasswordView());
       // case Routes.splashScreen:
       //   return _createRoute(const SplashScreen());
       // case Routes.onBoardingScreen:

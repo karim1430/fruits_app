@@ -32,4 +32,5 @@ class Assets {
   static const String google = 'assets/googleLogo.svg';
   static const String facebook = 'assets/facebookLogo.svg';
   static const String apple = 'assets/appleLogo.svg';
+  static const String rightPassword = 'assets/rightPassword.svg';
 }

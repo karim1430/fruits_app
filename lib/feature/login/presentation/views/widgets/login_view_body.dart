@@ -55,7 +55,7 @@ class _LoginViewBodyState extends State<LoginViewBody> {
                   onPressed: () {
                     if (formKey.currentState!.validate()) {
                       formKey.currentState!.save();
-                      Navigator.of(context).pushNamed(Routes.homeView);
+                      Navigator.of(context).pushNamed(Routes.newPasswordView);
                     } else {
                       autovalidateMode = AutovalidateMode.always;
                       setState(() {});
