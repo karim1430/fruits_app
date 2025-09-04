@@ -1,10 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:fruits_hub/core/routing/app_router.dart';
+import 'package:fruits_hub/core/services/shared_preferences_singleton.dart';
 import 'package:fruits_hub/feature/splash/presentation/views/splash_view.dart';
 import 'package:fruits_hub/generated/l10n.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  await SharedPreferencesSingleton.init();
+
   runApp(const FruitApp());
 }
 
@@ -14,6 +19,7 @@ class FruitApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      theme: ThemeData(fontFamily: 'Cairo'),
       localizationsDelegates: [
         S.delegate,
         GlobalMaterialLocalizations.delegate,

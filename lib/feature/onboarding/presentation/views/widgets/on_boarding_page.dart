@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:fruits_hub/core/routing/routes.dart';
+import 'package:fruits_hub/core/services/shared_preferences_singleton.dart';
 
-class OnboardPage extends StatelessWidget {
+class OnboardPage extends StatefulWidget {
   const OnboardPage({
     super.key,
     required this.title,
@@ -20,6 +22,11 @@ class OnboardPage extends StatelessWidget {
   final bool isLastPage;
 
   @override
+  State<OnboardPage> createState() => _OnboardPageState();
+}
+
+class _OnboardPageState extends State<OnboardPage> {
+  @override
   Widget build(BuildContext context) {
     return Column(
       children: [
@@ -30,31 +37,56 @@ class OnboardPage extends StatelessWidget {
             fit: StackFit.expand,
             children: [
               SvgPicture.asset(
-                imageAsset,
+                widget.imageAsset,
                 width: double.infinity,
                 fit: BoxFit.fill,
-                color: imageColor,
+                color: widget.imageColor,
               ),
               Align(
                 alignment: Alignment.bottomCenter,
-                child: SvgPicture.asset(centerImageAsset, height: 180),
+                child: SvgPicture.asset(widget.centerImageAsset, height: 180),
               ),
+              widget.isLastPage
+                  ? SizedBox()
+                  : Positioned(
+                      top: 3,
+                      right: 3,
+                      child: TextButton(
+                        onPressed: () {
+                          SharedPreferencesSingleton.setBool('skip', true);
+                          Navigator.pushReplacementNamed(
+                            context,
+                            Routes.loginView,
+                          );
+                          setState(() {});
+                        },
+                        child: Text('تخطي'),
+                      ),
+                    ),
             ],
           ),
         ),
         const SizedBox(height: 32),
         Text(
-          title,
+          widget.title,
           textAlign: TextAlign.center,
-          style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+          style: TextStyle(
+            fontSize: 23,
+            fontWeight: FontWeight.bold,
+            fontFamily: 'Cairo',
+          ),
         ),
         const SizedBox(height: 16),
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 24),
           child: Text(
-            description,
+            widget.description,
             textAlign: TextAlign.center,
-            style: const TextStyle(fontSize: 16, color: Colors.grey),
+            style: TextStyle(
+              fontSize: 14,
+              color: Color(0xff4E5556),
+              fontWeight: FontWeight.w600,
+            ),
           ),
         ),
       ],

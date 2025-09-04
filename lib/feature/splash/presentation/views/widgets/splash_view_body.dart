@@ -3,6 +3,8 @@ import 'package:flutter_svg/svg.dart';
 import 'package:fruits_hub/core/routing/routes.dart';
 import 'package:fruits_hub/core/utils/assets.dart';
 
+import '../../../../../core/services/shared_preferences_singleton.dart';
+
 class SplashViewBody extends StatefulWidget {
   const SplashViewBody({super.key});
 
@@ -11,13 +13,32 @@ class SplashViewBody extends StatefulWidget {
 }
 
 class _SplashViewBodyState extends State<SplashViewBody> {
+  late bool skip;
   @override
   void initState() {
+    skip = SharedPreferencesSingleton.getBool('skip');
+    // waitAndnagigatToBoardingview();
+    skipToLogin();
+    super.initState();
+  }
+
+  void skipToLogin() {
+    if (skip == false) {
+      waitAndnagigatToBoardingview();
+      // setState(() {});
+    } else {
+      Future.delayed(const Duration(seconds: 3), () {
+        Navigator.pushReplacementNamed(context, Routes.loginView);
+        setState(() {});
+      });
+    }
+  }
+
+  void waitAndnagigatToBoardingview() {
     Future.delayed(const Duration(seconds: 3), () {
       Navigator.pushReplacementNamed(context, Routes.onboardingView);
       setState(() {}); // Use your home route name
     });
-    super.initState();
   }
 
   @override
