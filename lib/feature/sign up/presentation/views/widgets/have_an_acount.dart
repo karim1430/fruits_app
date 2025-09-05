@@ -3,8 +3,8 @@ import 'package:fruits_hub/core/routing/routes.dart';
 
 import '../../../../../core/utils/app_styles.dart';
 
-class CustomCreateAcount extends StatelessWidget {
-  const CustomCreateAcount({super.key});
+class HaveAnAccount extends StatelessWidget {
+  const HaveAnAccount({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -12,15 +12,15 @@ class CustomCreateAcount extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Text(
-          'لا تمتك حساب ؟',
+          'تمتلك حساب بالفعل؟',
           style: AppStyles.textStyleSemi16.copyWith(color: Color(0xff616A6B)),
         ),
         GestureDetector(
           onTap: () {
-            Navigator.of(context).pushNamed(Routes.signUpview);
+            Navigator.of(context).pushReplacementNamed(Routes.loginView);
           },
           child: Text(
-            'قم بإنشاء حساب',
+            ' تسجيل دخول',
             style: AppStyles.textStyleSemi16.copyWith(color: Color(0xff1B5E37)),
           ),
         ),

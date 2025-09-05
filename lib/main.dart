@@ -7,7 +7,6 @@ import 'package:fruits_hub/generated/l10n.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-
   await SharedPreferencesSingleton.init();
 
   runApp(const FruitApp());
@@ -19,7 +18,11 @@ class FruitApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      theme: ThemeData(fontFamily: 'Cairo'),
+      theme: ThemeData(
+        appBarTheme: AppBarTheme(backgroundColor: Colors.white),
+        fontFamily: 'Cairo',
+        scaffoldBackgroundColor: Colors.white,
+      ),
       localizationsDelegates: [
         S.delegate,
         GlobalMaterialLocalizations.delegate,

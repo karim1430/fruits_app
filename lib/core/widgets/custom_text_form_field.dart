@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fruits_hub/core/utils/constants.dart';
 
 import '../utils/app_styles.dart';
 
@@ -33,6 +34,8 @@ class CustomTextFormField extends StatelessWidget {
 
       style: AppStyles.textStyleSemi16.copyWith(color: Colors.black),
       decoration: InputDecoration(
+        fillColor: Color(0xffF9FAFA),
+        filled: true,
         suffixIcon: suffixIcon,
         labelStyle: AppStyles.textStyleBold13,
         labelText: labelText,
@@ -40,6 +43,10 @@ class CustomTextFormField extends StatelessWidget {
         border: OutlineInputBorder(
           borderRadius: BorderRadius.all(Radius.circular(10)),
           borderSide: BorderSide(color: Color(0xffE6E9EA)),
+        ),
+        focusedBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.all(Radius.circular(10)),
+          borderSide: BorderSide(color: kPrimaryColor),
         ),
       ),
     );

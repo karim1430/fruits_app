@@ -7,4 +7,5 @@ class Routes {
   static const String passwordRecoveryView = '/recovery';
   static const String checkView = '/check';
   static const String newPasswordView = '/newPassword';
+  static const String signUpview = '/signUp';
 }
