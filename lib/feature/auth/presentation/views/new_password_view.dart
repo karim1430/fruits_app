@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:fruits_hub/core/utils/app_styles.dart';
-import 'package:fruits_hub/feature/login/presentation/views/widgets/new_password_view_body.dart';
+import 'package:fruits_hub/feature/auth/presentation/views/widgets/new_password_view_body.dart';
 
 class NewPasswordView extends StatelessWidget {
   const NewPasswordView({super.key});

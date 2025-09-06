@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:fruits_hub/core/utils/constants.dart';
-import 'package:fruits_hub/feature/login/presentation/views/new_password_view.dart';
+import 'package:fruits_hub/feature/auth/presentation/views/new_password_view.dart';
 
 import '../../../../../core/routing/routes.dart';
 import '../../../../../core/utils/app_styles.dart';

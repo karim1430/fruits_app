@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:fruits_hub/feature/login/presentation/views/widgets/divider_widget.dart';
-import 'package:fruits_hub/feature/login/presentation/views/widgets/google_facebook_apple.dart';
+import 'package:fruits_hub/feature/auth/presentation/views/widgets/divider_widget.dart';
+import 'package:fruits_hub/feature/auth/presentation/views/widgets/google_facebook_apple.dart';
 
 import '../../../../../core/utils/assets.dart';
 

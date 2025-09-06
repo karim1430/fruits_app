@@ -3,7 +3,7 @@ import 'package:fruits_hub/core/routing/routes.dart';
 
 import 'package:fruits_hub/core/widgets/custom_elevated_button.dart';
 import 'package:fruits_hub/core/widgets/custom_text_form_field.dart';
-import 'package:fruits_hub/feature/sign%20up/presentation/views/widgets/have_an_acount.dart';
+import 'package:fruits_hub/feature/auth/presentation/views/widgets/have_an_acount.dart';
 
 import 'condition_and_control.dart';
 
