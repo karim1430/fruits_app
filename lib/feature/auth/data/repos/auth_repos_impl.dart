@@ -23,11 +23,12 @@ class AuthReposImpl implements AuthRepo {
         email: email,
         password: password,
       );
-      return right(UserModel.fromFirebaseModel(user));
+      log(user.displayName.toString());
+      return right(UserModel.fromFirebaseModel(user, fallbackName: name));
     } on CustomException catch (e) {
-      log(e.toString());
       return left(ServerFailure(e.message));
     } catch (e) {
+      log(e.toString());
       return left(ServerFailure(e.toString()));
     }
   }

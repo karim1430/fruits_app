@@ -3,10 +3,10 @@ import 'package:fruits_hub/feature/auth/domain/entities/user_entity.dart';
 
 class UserModel extends UserEntity {
   UserModel({required super.name, required super.email, required super.uId});
-  factory UserModel.fromFirebaseModel(User user) {
+  factory UserModel.fromFirebaseModel(User user, {String? fallbackName}) {
     return UserModel(
-      name: user.displayName!,
-      email: user.email!,
+      name: user.displayName ?? fallbackName ?? '',
+      email: user.email ?? '',
       uId: user.uid,
     );
   }

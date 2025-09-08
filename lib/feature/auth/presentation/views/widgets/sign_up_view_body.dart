@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:fruits_hub/core/utils/showSnackBar.dart';
 import 'package:fruits_hub/core/widgets/custom_elevated_button.dart';
 import 'package:fruits_hub/core/widgets/custom_text_form_field.dart';
 import 'package:fruits_hub/feature/auth/presentation/manager/cubit/sign_up_cubit.dart';
@@ -18,7 +19,7 @@ class _SignUpViewBodyState extends State<SignUpViewBody> {
   GlobalKey<FormState> formKey = GlobalKey();
   AutovalidateMode autovalidateMode = AutovalidateMode.disabled;
   bool check = false;
-  String? email, password, name;
+  late String email, password, name;
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
@@ -32,8 +33,14 @@ class _SignUpViewBodyState extends State<SignUpViewBody> {
               SizedBox(height: 24),
               CustomTextFormField(
                 labelText: 'الاسم كامل',
+                validator: (value) {
+                  if (value == null || value.trim().isEmpty) {
+                    return 'الاسم مطلوب';
+                  }
+                  return null;
+                },
                 onSaved: (value) {
-                  name = value;
+                  name = (value ?? '').trim();
                 },
               ),
               SizedBox(height: 16),
@@ -51,7 +58,7 @@ class _SignUpViewBodyState extends State<SignUpViewBody> {
                   return null;
                 },
                 onSaved: (value) {
-                  email = value;
+                  email = (value ?? '').trim();
                 },
               ),
               SizedBox(height: 16),
@@ -59,8 +66,17 @@ class _SignUpViewBodyState extends State<SignUpViewBody> {
                 labelText: 'كلمة المرور',
                 keyboardType: TextInputType.visiblePassword,
                 obscureText: true,
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'كلمة المرور مطلوبة';
+                  }
+                  if (value.length < 6) {
+                    return 'كلمة المرور يجب أن تكون 6 أحرف على الأقل';
+                  }
+                  return null;
+                },
                 onSaved: (value) {
-                  password = value;
+                  password = value ?? '';
                 },
               ),
               SizedBox(height: 16),
@@ -80,13 +96,19 @@ class _SignUpViewBodyState extends State<SignUpViewBody> {
                       await context
                           .read<SignUpCubit>()
                           .createUserWithEmailAndPassword(
-                            email: email!,
-                            password: password!,
-                            name: name!,
+                            email: email,
+                            password: password,
+                            name: name,
                           );
                     } else {
                       autovalidateMode = AutovalidateMode.always;
                       setState(() {});
+                      if (check == false) {
+                        showSnackBar(
+                          context,
+                          'ألرجاء الموافقه علي الشروط و الاحكام',
+                        );
+                      }
                     }
                   },
                 ),

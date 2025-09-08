@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:fruits_hub/core/errors/exptions.dart';
 
@@ -9,7 +11,13 @@ class FirebaseAuthService {
     try {
       final credential = await FirebaseAuth.instance
           .createUserWithEmailAndPassword(email: email, password: password);
-      return credential.user!;
+      final user = credential.user;
+      if (user == null) {
+        throw CustomException(
+          message: 'فشل إنشاء الحساب. الرجاء المحاولة لاحقًا',
+        );
+      }
+      return user;
     } on FirebaseAuthException catch (e) {
       if (e.code == 'weak-password') {
         throw CustomException(message: 'كلمة المرور ضعيفه جدا');

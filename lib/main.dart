@@ -11,7 +11,7 @@ import 'package:fruits_hub/generated/l10n.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await SharedPreferencesSingleton.init();
+
   Bloc.observer = CustomBlocObserver();
   await Firebase.initializeApp(
     options: FirebaseOptions(
@@ -23,6 +23,7 @@ void main() async {
     ),
   );
   setup();
+  await SharedPreferencesSingleton.init();
   runApp(const FruitApp());
 }
 
