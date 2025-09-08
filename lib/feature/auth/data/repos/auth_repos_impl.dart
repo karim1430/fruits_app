@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:dartz/dartz.dart';
 import 'package:fruits_hub/core/errors/exptions.dart';
 import 'package:fruits_hub/core/errors/failure.dart';
@@ -23,6 +25,7 @@ class AuthReposImpl implements AuthRepo {
       );
       return right(UserModel.fromFirebaseModel(user));
     } on CustomException catch (e) {
+      log(e.toString());
       return left(ServerFailure(e.message));
     } catch (e) {
       return left(ServerFailure(e.toString()));

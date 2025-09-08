@@ -11,26 +11,33 @@ class CustomTextFormField extends StatelessWidget {
     this.controller,
     this.obscureText,
     this.suffixIcon,
+    this.onSaved,
+    this.validator,
   });
   final TextInputType? keyboardType;
   final String labelText;
   final TextEditingController? controller;
   final bool? obscureText;
   final Widget? suffixIcon;
+  final void Function(String?)? onSaved;
+  final String? Function(String?)? validator;
   // final GlobalKey<FormState> formKey = GlobalKey();
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      onSaved: onSaved,
       obscureText: obscureText ?? false,
       keyboardType: keyboardType ?? TextInputType.text,
       controller: controller,
       // key: formKey,
-      validator: (value) {
-        if (value == null || value.isEmpty) {
-          return 'هذا $labelText مطلوب';
-        }
-        return null;
-      },
+      validator:
+          validator ??
+          (value) {
+            if (value == null || value.isEmpty) {
+              return 'هذا $labelText مطلوب';
+            }
+            return null;
+          },
 
       style: AppStyles.textStyleSemi16.copyWith(color: Colors.black),
       decoration: InputDecoration(
