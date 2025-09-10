@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fruits_hub/core/utils/showSnackBar.dart';
 import 'package:fruits_hub/core/widgets/custom_elevated_button.dart';
 import 'package:fruits_hub/core/widgets/custom_text_form_field.dart';
-import 'package:fruits_hub/feature/auth/presentation/manager/cubit/sign_up_cubit.dart';
+import 'package:fruits_hub/feature/auth/presentation/manager/sign_up_cubit/sign_up_cubit.dart';
 import 'package:fruits_hub/feature/auth/presentation/views/widgets/have_an_acount.dart';
 import 'condition_and_control.dart';
 

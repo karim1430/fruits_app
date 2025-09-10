@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:fruits_hub/core/routing/routes.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fruits_hub/core/widgets/custom_elevated_button.dart';
-
+import 'package:fruits_hub/feature/auth/presentation/manager/sign_in_cubit/sign_in_cubit.dart';
 import '../../../../../core/widgets/custom_text_form_field.dart';
 import 'custom_create_account.dart';
 import 'forget_password.dart';
@@ -16,8 +16,10 @@ class LoginViewBody extends StatefulWidget {
 
 class _LoginViewBodyState extends State<LoginViewBody> {
   bool isObscure = true;
+  bool visible = false;
   GlobalKey<FormState> formKey = GlobalKey();
   AutovalidateMode autovalidateMode = AutovalidateMode.disabled;
+  late String email, password;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -30,9 +32,27 @@ class _LoginViewBodyState extends State<LoginViewBody> {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               SizedBox(height: 24),
-              CustomTextFormField(labelText: 'تسجيل الدخول'),
+              CustomTextFormField(
+                labelText: 'تسجيل الدخول',
+                onSaved: (value) {
+                  email = value!;
+                },
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'هذا البريد الإلكتروني مطلوب';
+                  }
+                  final emailRegex = RegExp(r'^[^\s@]+@[^\s@]+\.[^\s@]+$');
+                  if (!emailRegex.hasMatch(value)) {
+                    return 'البريد الإلكتروني غير صالح';
+                  }
+                  return null;
+                },
+              ),
               SizedBox(height: 16),
               CustomTextFormField(
+                onSaved: (value) {
+                  password = value!;
+                },
                 labelText: 'كلمة المرور',
                 keyboardType: TextInputType.visiblePassword,
                 obscureText: isObscure,
@@ -42,7 +62,9 @@ class _LoginViewBodyState extends State<LoginViewBody> {
                       isObscure = !isObscure;
                     });
                   },
-                  icon: Icon(Icons.remove_red_eye),
+                  icon: isObscure
+                      ? Icon(Icons.remove_red_eye)
+                      : Icon(Icons.visibility_off),
                 ),
               ),
               SizedBox(height: 20),
@@ -55,7 +77,12 @@ class _LoginViewBodyState extends State<LoginViewBody> {
                   onPressed: () {
                     if (formKey.currentState!.validate()) {
                       formKey.currentState!.save();
-                      Navigator.of(context).pushNamed(Routes.newPasswordView);
+                      context
+                          .read<SignInCubit>()
+                          .signInUserWithEmailAndPassword(
+                            email: email,
+                            password: password,
+                          );
                     } else {
                       autovalidateMode = AutovalidateMode.always;
                       setState(() {});

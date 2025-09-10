@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fruits_hub/core/services/service_allocator.dart';
 import 'package:fruits_hub/core/widgets/app_par_build.dart';
 import 'package:fruits_hub/feature/auth/domain/repos/auth_repo.dart';
-import 'package:fruits_hub/feature/auth/presentation/manager/cubit/sign_up_cubit.dart';
+import 'package:fruits_hub/feature/auth/presentation/manager/sign_up_cubit/sign_up_cubit.dart';
 import 'widgets/sign_up_view_body_bloc_consumer.dart';
 
 class SignUpView extends StatelessWidget {
