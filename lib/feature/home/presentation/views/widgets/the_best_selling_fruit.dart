@@ -30,10 +30,12 @@ class TheBestSellingFruit extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 8),
               child: Center(
-                child: SvgPicture.asset(
-                  'assets/fruit_hup_icon.svg',
-                  height: 80,
-                ),
+                child: SizedBox(height: 80),
+                //  SvgPicture.asset(
+                //   'assets/Avocado_photo.svg',
+                //   height: 80,
+                //   color: Colors.red,
+                // ),
               ),
             ),
             SizedBox(height: 8),

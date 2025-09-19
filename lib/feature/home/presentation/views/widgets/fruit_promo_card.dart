@@ -45,12 +45,18 @@ class FruitPromoCard extends StatelessWidget {
                   child: Image.network(
                     'https://images.unsplash.com/photo-1610348725531-843dff563e2c?w=400&h=300&fit=crop',
                     fit: BoxFit.cover,
-                    errorBuilder: (context, error, stackTrace) {
-                      return Container(
-                        color: Colors.white.withOpacity(0.2),
-                        child: Icon(Icons.image, color: Colors.white, size: 40),
-                      );
-                    },
+                    cacheWidth: 320, // يقلل حجم الديكود
+                    filterQuality: FilterQuality.medium,
+                    loadingBuilder: (context, child, progress) =>
+                        progress == null
+                        ? child
+                        : Center(
+                            child: CircularProgressIndicator(strokeWidth: 2),
+                          ),
+                    errorBuilder: (context, error, stackTrace) => Container(
+                      color: Colors.white.withOpacity(0.2),
+                      child: Icon(Icons.image, color: Colors.white, size: 40),
+                    ),
                   ),
                 ),
               ),

@@ -44,28 +44,34 @@ class HomeViewBody extends StatelessWidget {
             ),
           ),
           SliverToBoxAdapter(
-            child: Row(
-              children: [
-                Text(
-                  'الأكثر مبيعًا',
-                  style: AppStyles.textStyleBold16.copyWith(fontSize: 20),
-                ),
-                Spacer(),
-                Text('المزيد', style: AppStyles.textStyleBold13),
-              ],
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 17),
+              child: Row(
+                children: [
+                  Text(
+                    'الأكثر مبيعًا',
+                    style: AppStyles.textStyleBold16.copyWith(fontSize: 20),
+                  ),
+                  Spacer(),
+                  Text('المزيد', style: AppStyles.textStyleBold13),
+                ],
+              ),
             ),
           ),
-          SliverGrid.builder(
-            itemCount: 20,
-            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 2,
-              mainAxisSpacing: 8,
-              crossAxisSpacing: 8,
-              childAspectRatio: 0.9,
+          SliverPadding(
+            padding: const EdgeInsets.symmetric(horizontal: 17),
+            sliver: SliverGrid.builder(
+              itemCount: 10,
+              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 2,
+                mainAxisSpacing: 8,
+                crossAxisSpacing: 8,
+                childAspectRatio: 0.8,
+              ),
+              itemBuilder: (context, index) {
+                return TheBestSellingFruit();
+              },
             ),
-            itemBuilder: (context, index) {
-              return TheBestSellingFruit();
-            },
           ),
         ],
       ),
