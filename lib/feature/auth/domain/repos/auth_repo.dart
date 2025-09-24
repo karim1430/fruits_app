@@ -20,5 +20,6 @@ abstract class AuthRepo {
     required Map<String, dynamic> data,
     String? uId,
   });
+  Future saveUserData({required Map<String, dynamic> user});
   Future<Map<String, dynamic>> getUserData({required String uId});
 }

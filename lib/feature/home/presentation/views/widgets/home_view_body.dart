@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:fruits_hub/core/services/shared_preferences_singleton.dart';
 import 'package:fruits_hub/core/utils/app_styles.dart';
+import 'package:fruits_hub/core/utils/backend_endpoint.dart';
+import 'package:fruits_hub/core/utils/get_user.dart';
 import 'package:fruits_hub/feature/home/presentation/views/widgets/fruit_promo_card.dart';
 import 'package:fruits_hub/feature/home/presentation/views/widgets/search_custom.dart';
+import '../../../../Best Selling/presentation/views/best_selling_view.dart';
 import 'the_best_selling_fruit.dart';
 
 class HomeViewBody extends StatelessWidget {
@@ -21,7 +25,7 @@ class HomeViewBody extends StatelessWidget {
                   color: Color(0xff949D9E),
                 ),
               ),
-              subtitle: Text('أحمد مصطفي', style: AppStyles.textStyleBold16),
+              subtitle: Text(getUser().name, style: AppStyles.textStyleBold16),
               leading: CircleAvatar(
                 child: SvgPicture.asset('assets/Ellipse_icon.svg'),
               ),
@@ -53,7 +57,16 @@ class HomeViewBody extends StatelessWidget {
                     style: AppStyles.textStyleBold16.copyWith(fontSize: 20),
                   ),
                   Spacer(),
-                  Text('المزيد', style: AppStyles.textStyleBold13),
+                  TextButton(
+                    onPressed: () {
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (context) => BestSellingView(),
+                        ),
+                      );
+                    },
+                    child: Text('المزيد', style: AppStyles.textStyleBold13),
+                  ),
                 ],
               ),
             ),

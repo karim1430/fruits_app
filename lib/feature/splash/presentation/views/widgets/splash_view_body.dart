@@ -13,33 +13,33 @@ class SplashViewBody extends StatefulWidget {
 }
 
 class _SplashViewBodyState extends State<SplashViewBody> {
-  late bool skip;
-  @override
-  void initState() {
-    skip = SharedPreferencesSingleton.getBool('skip');
-    // waitAndnagigatToBoardingview();
-    skipToLogin();
-    super.initState();
-  }
+  // late bool skip;
+  // @override
+  // void initState() {
+  //   skip = SharedPreferencesSingleton.getBool('skip');
+  //   // waitAndnagigatToBoardingview();
+  //   skipToLogin();
+  //   super.initState();
+  // }
 
-  void skipToLogin() {
-    if (skip == false) {
-      waitAndnagigatToBoardingview();
-      // setState(() {});
-    } else {
-      Future.delayed(const Duration(seconds: 3), () {
-        Navigator.pushReplacementNamed(context, Routes.loginView);
-        setState(() {});
-      });
-    }
-  }
+  // void skipToLogin() {
+  //   if (skip == false) {
+  //     waitAndnagigatToBoardingview();
+  //     // setState(() {});
+  //   } else {
+  //     Future.delayed(const Duration(seconds: 3), () {
+  //       Navigator.pushReplacementNamed(context, Routes.loginView);
+  //       setState(() {});
+  //     });
+  //   }
+  // }
 
-  void waitAndnagigatToBoardingview() {
-    Future.delayed(const Duration(seconds: 3), () {
-      Navigator.pushReplacementNamed(context, Routes.onboardingView);
-      setState(() {}); // Use your home route name
-    });
-  }
+  // void waitAndnagigatToBoardingview() {
+  //   Future.delayed(const Duration(seconds: 3), () {
+  //     Navigator.pushReplacementNamed(context, Routes.onboardingView);
+  //     setState(() {}); // Use your home route name
+  //   });
+  // }
 
   @override
   Widget build(BuildContext context) {

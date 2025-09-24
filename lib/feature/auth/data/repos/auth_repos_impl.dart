@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:developer';
 import 'package:dartz/dartz.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -5,10 +6,12 @@ import 'package:fruits_hub/core/errors/exptions.dart';
 import 'package:fruits_hub/core/errors/failure.dart';
 import 'package:fruits_hub/core/services/firebase_auth_service.dart';
 import 'package:fruits_hub/core/services/firebase_services.dart';
+import 'package:fruits_hub/core/services/shared_preferences_singleton.dart';
 import 'package:fruits_hub/core/utils/backend_endpoint.dart';
 import 'package:fruits_hub/feature/auth/data/models/user_model.dart';
 import 'package:fruits_hub/feature/auth/domain/entities/user_entity.dart';
 import 'package:fruits_hub/feature/auth/domain/repos/auth_repo.dart';
+import 'package:get_it/get_it.dart';
 
 class AuthReposImpl implements AuthRepo {
   final FirebaseAuthService firebaseAuthService;
@@ -35,6 +38,7 @@ class AuthReposImpl implements AuthRepo {
         data: userEntity.toMap(),
         uId: user.uid,
       );
+      await saveUserData(user: userEntity.toMap());
       return right(userEntity);
     } on CustomException catch (e) {
       if (userEntity != null) {
@@ -61,6 +65,8 @@ class AuthReposImpl implements AuthRepo {
         password: password,
       );
       var users = await getUserData(uId: user.uid);
+      // var saveUser = jsonEncode(users);
+      await saveUserData(user: users);
       log(users.toString());
       return right(UserModel.fromJson(users));
     } on CustomException catch (e) {
@@ -99,6 +105,7 @@ class AuthReposImpl implements AuthRepo {
           uId: user.uId,
         );
       }
+      await saveUserData(user: user.toMap());
       return right(userCredential);
     } on CustomException catch (e) {
       return left(ServerFailure(e.message));
@@ -142,6 +149,16 @@ class AuthReposImpl implements AuthRepo {
     return await firebaseServices.getData(
       path: BackendEndpoint.getUserData,
       uId: uId,
+    );
+  }
+
+  @override
+  Future saveUserData({required Map<String, dynamic> user}) async {
+    var userModel = UserModel.fromJson(user);
+    var jsonData = jsonEncode(userModel.toMap());
+    await SharedPreferencesSingleton.setString(
+      BackendEndpoint.saveData,
+      jsonData,
     );
   }
 }
