@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'package:fruits_hub/core/entities/product_entity.dart';
 import 'package:fruits_hub/core/models/review_model.dart';
 
 class ProductModel {
@@ -38,25 +39,42 @@ class ProductModel {
 
   factory ProductModel.fromJson(Map<String, dynamic> json) {
     return ProductModel(
-      name: json['name'] as String,
-      code: json['code'] as String,
-      description: json['description'] as String,
-      price: json['price'] as num,
+      name: json['name'] as String? ?? '',
+      code: json['code'] as String? ?? '',
+      description: json['description'] as String? ?? '',
+      price: json['price'] as num? ?? 0,
       imageFile: File(
-        json['image'],
+        json['image'] as String? ?? '',
       ), // Placeholder, as File cannot be deserialized from JSON
-      isFeature: json['isFeature'] as bool,
+      isFeature: json['isFeature'] as bool? ?? false,
       imageUrl: json['imageUrl'] as String?,
-      avgRatting: json['avgRatting'] ?? 0,
-      count: json['count'] ?? 0,
-      expiration: json['expiration'] as num,
-      numberOfCallories: json['numberOfCallories'] as int,
-      isOrganic: json['isOrganic'] ?? false,
-      unitAmount: json['unitAmount'] as int,
+      avgRatting: json['avgRatting'] as num? ?? 0,
+      count: json['count'] as num? ?? 0,
+      expiration: json['expiration'] as num? ?? 0,
+      numberOfCallories: json['numberOfCallories'] as int? ?? 0,
+      isOrganic: json['isOrganic'] as bool? ?? false,
+      unitAmount: json['unitAmount'] as int? ?? 0,
       reviews: (json['reviews'] as List<dynamic>? ?? [])
           .map((e) => ReviewModel.fromJson(e as Map<String, dynamic>))
           .toList(),
-      sellingCount: json['sellingCount'] ?? 0,
+      sellingCount: json['sellingCount'] as int? ?? 0,
+    );
+  }
+
+  ProductEntity toEntity() {
+    return ProductEntity(
+      name: name,
+      code: code,
+      description: description,
+      price: price,
+      imageFile: imageFile,
+      isFeature: isFeature,
+      avgRatting: avgRatting,
+      count: count,
+      expiration: expiration,
+      numberOfCallories: numberOfCallories,
+      unitAmount: unitAmount,
+      reviews: reviews.map((e) => e.toEntity()).toList(),
     );
   }
 

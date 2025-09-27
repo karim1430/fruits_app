@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:fruits_hub/core/repos/product_repo/product_repo.dart';
+import 'package:fruits_hub/core/repos/product_repo/product_repo_impl.dart';
 import 'package:fruits_hub/core/routing/routes.dart';
 import 'package:fruits_hub/feature/onboarding/presentation/views/widgets/custom_buble.dart';
 // Removed Google Fonts to avoid network fetch; using bundled font from pubspec

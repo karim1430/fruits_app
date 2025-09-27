@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:fruits_hub/core/cubits/product_cubit/product_cubit.dart';
+import 'package:fruits_hub/core/repos/product_repo/product_repo.dart';
+import 'package:fruits_hub/core/services/service_allocator.dart';
 import 'package:fruits_hub/core/utils/constants.dart';
 import 'package:fruits_hub/feature/home/presentation/views/widgets/home_view_body.dart';
 import 'package:fruits_hub/feature/my_account/presentation/views/my_account_view.dart';
@@ -17,8 +21,11 @@ class HomeView extends StatefulWidget {
 class _HomeViewState extends State<HomeView> {
   int _selectedIndex = 0;
 
-  final List<Widget> _pages = const [
-    HomeViewBody(),
+  final List<Widget> _pages = [
+    BlocProvider(
+      create: (context) => ProductCubit(getIt.get<ProductRepo>()),
+      child: HomeViewBody(),
+    ),
     ProductView(),
     ShoppingView(),
     MyAccountView(),
@@ -41,145 +48,143 @@ class _HomeViewState extends State<HomeView> {
               BoxShadow(blurRadius: 10, color: Colors.black12.withOpacity(0.1)),
             ],
           ),
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 27, vertical: 20),
-            child: GNav(
-              rippleColor: Colors.grey[300]!,
-              hoverColor: Colors.grey[100]!,
-              haptic: true,
-              tabBorderRadius: 20,
-              gap: 8,
-              activeColor: Colors.white,
-              color: Colors.black54,
-              iconSize: 24,
-              padding: const EdgeInsets.symmetric(),
-              duration: const Duration(milliseconds: 200),
-              tabBackgroundColor: Colors.grey.shade300,
-              backgroundColor: Colors.white,
-              tabs: [
-                GButton(
-                  textStyle: const TextStyle(
-                    color: kPrimaryColor,
-                    fontWeight: FontWeight.w600,
-                  ),
-                  icon: Icons.circle, // Placeholder
-                  iconColor: Colors.transparent, // إخفاء الأيقونة الافتراضية
-                  leading: Container(
-                    padding: const EdgeInsets.all(
-                      6,
-                    ), // مسافة صغيرة حوالين الـ svg
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      color: _selectedIndex == 0 ? kPrimaryColor : Colors.white,
-                    ),
-                    child: SvgPicture.asset(
-                      "assets/home_icon.svg",
-                      width: 20, // أصغر شوية عشان يدخل جوه الدائرة
-                      height: 20,
-                      colorFilter: ColorFilter.mode(
-                        _selectedIndex == 0
-                            ? Colors.white
-                            : Colors
-                                  .grey
-                                  .shade400, // خلي الأيقونة بيضاء جوه الدائرة
-                        BlendMode.srcIn,
-                      ),
-                    ),
-                  ),
-                  text: 'الرئيسية',
-                ),
-                GButton(
-                  textStyle: const TextStyle(
-                    color: kPrimaryColor,
-                    fontWeight: FontWeight.w600,
-                  ),
-                  icon: Icons.circle, // أيقونة Placeholder
-                  iconColor: Colors.transparent, // نخليها شفافة عشان متبانش
-                  leading: Container(
-                    padding: const EdgeInsets.all(6),
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      color: _selectedIndex == 1 ? kPrimaryColor : Colors.white,
-                    ),
-                    child: SvgPicture.asset(
-                      "assets/product_icon.svg",
-                      width: 20,
-                      height: 20,
-                      colorFilter: ColorFilter.mode(
-                        _selectedIndex == 1
-                            ? Colors.white
-                            : Colors.grey.shade400,
-                        BlendMode.srcIn,
-                      ),
-                    ),
-                  ),
-                  text: 'المنتجات',
-                ),
-                GButton(
-                  textStyle: const TextStyle(
-                    color: kPrimaryColor,
-                    fontWeight: FontWeight.w600,
-                  ),
-                  icon: Icons.circle, // أيقونة Placeholder
-                  iconColor: Colors.transparent, // نخليها شفافة عشان متبانش
-                  leading: Container(
-                    padding: const EdgeInsets.all(6),
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      color: _selectedIndex == 2 ? kPrimaryColor : Colors.white,
-                    ),
-                    child: SvgPicture.asset(
-                      "assets/shopping_cart_icon.svg",
-                      width: 20,
-                      height: 20,
-                      colorFilter: ColorFilter.mode(
-                        _selectedIndex == 2
-                            ? Colors.white
-                            : Colors.grey.shade400,
-                        BlendMode.srcIn,
-                      ),
-                    ),
-                  ),
-                  text: 'سلة التسوق',
-                ),
-                GButton(
-                  textStyle: const TextStyle(
-                    color: kPrimaryColor,
-                    fontWeight: FontWeight.w600,
-                  ),
-                  icon: Icons.circle, // أيقونة Placeholder
-                  iconColor: Colors.transparent, // نخليها شفافة عشان متبانش
-                  leading: Container(
-                    padding: const EdgeInsets.all(6),
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      color: _selectedIndex == 3 ? kPrimaryColor : Colors.white,
-                    ),
-                    child: SvgPicture.asset(
-                      "assets/user_icon.svg",
-                      width: 20,
-                      height: 20,
-                      colorFilter: ColorFilter.mode(
-                        _selectedIndex == 3
-                            ? Colors.white
-                            : Colors.grey.shade400,
-                        BlendMode.srcIn,
-                      ),
-                    ),
-                  ),
-                  text: 'حسابي',
-                ),
-              ],
-              selectedIndex: _selectedIndex,
-              onTabChange: (index) {
-                setState(() {
-                  _selectedIndex = index;
-                });
-              },
-            ),
+          child: buttomNavigationBar(
+            selectedIndex: _selectedIndex,
+            onTabChange: (index) {
+              setState(() {
+                _selectedIndex = index;
+              });
+            },
           ),
         ),
       ),
     );
   }
+}
+
+Padding buttomNavigationBar({
+  required int selectedIndex,
+  required Function(int) onTabChange,
+}) {
+  return Padding(
+    padding: const EdgeInsets.symmetric(horizontal: 27, vertical: 20),
+    child: GNav(
+      rippleColor: Colors.grey[300]!,
+      hoverColor: Colors.grey[100]!,
+      haptic: true,
+      tabBorderRadius: 20,
+      gap: 8,
+      activeColor: Colors.white,
+      color: Colors.black54,
+      iconSize: 24,
+      padding: const EdgeInsets.symmetric(),
+      duration: const Duration(milliseconds: 200),
+      tabBackgroundColor: Colors.grey.shade300,
+      backgroundColor: Colors.white,
+      tabs: [
+        GButton(
+          textStyle: const TextStyle(
+            color: kPrimaryColor,
+            fontWeight: FontWeight.w600,
+          ),
+          icon: Icons.circle,
+          iconColor: Colors.transparent,
+          leading: Container(
+            padding: const EdgeInsets.all(6),
+            decoration: BoxDecoration(
+              shape: BoxShape.circle,
+              color: selectedIndex == 0 ? kPrimaryColor : Colors.white,
+            ),
+            child: SvgPicture.asset(
+              "assets/home_icon.svg",
+              width: 20,
+              height: 20,
+              colorFilter: ColorFilter.mode(
+                selectedIndex == 0 ? Colors.white : Colors.grey.shade400,
+                BlendMode.srcIn,
+              ),
+            ),
+          ),
+          text: 'الرئيسية',
+        ),
+        GButton(
+          textStyle: const TextStyle(
+            color: kPrimaryColor,
+            fontWeight: FontWeight.w600,
+          ),
+          icon: Icons.circle,
+          iconColor: Colors.transparent,
+          leading: Container(
+            padding: const EdgeInsets.all(6),
+            decoration: BoxDecoration(
+              shape: BoxShape.circle,
+              color: selectedIndex == 1 ? kPrimaryColor : Colors.white,
+            ),
+            child: SvgPicture.asset(
+              "assets/product_icon.svg",
+              width: 20,
+              height: 20,
+              colorFilter: ColorFilter.mode(
+                selectedIndex == 1 ? Colors.white : Colors.grey.shade400,
+                BlendMode.srcIn,
+              ),
+            ),
+          ),
+          text: 'المنتجات',
+        ),
+        GButton(
+          textStyle: const TextStyle(
+            color: kPrimaryColor,
+            fontWeight: FontWeight.w600,
+          ),
+          icon: Icons.circle,
+          iconColor: Colors.transparent,
+          leading: Container(
+            padding: const EdgeInsets.all(6),
+            decoration: BoxDecoration(
+              shape: BoxShape.circle,
+              color: selectedIndex == 2 ? kPrimaryColor : Colors.white,
+            ),
+            child: SvgPicture.asset(
+              "assets/shopping_cart_icon.svg",
+              width: 20,
+              height: 20,
+              colorFilter: ColorFilter.mode(
+                selectedIndex == 2 ? Colors.white : Colors.grey.shade400,
+                BlendMode.srcIn,
+              ),
+            ),
+          ),
+          text: 'سلة التسوق',
+        ),
+        GButton(
+          textStyle: const TextStyle(
+            color: kPrimaryColor,
+            fontWeight: FontWeight.w600,
+          ),
+          icon: Icons.circle,
+          iconColor: Colors.transparent,
+          leading: Container(
+            padding: const EdgeInsets.all(6),
+            decoration: BoxDecoration(
+              shape: BoxShape.circle,
+              color: selectedIndex == 3 ? kPrimaryColor : Colors.white,
+            ),
+            child: SvgPicture.asset(
+              "assets/user_icon.svg",
+              width: 20,
+              height: 20,
+              colorFilter: ColorFilter.mode(
+                selectedIndex == 3 ? Colors.white : Colors.grey.shade400,
+                BlendMode.srcIn,
+              ),
+            ),
+          ),
+          text: 'حسابي',
+        ),
+      ],
+      selectedIndex: selectedIndex,
+      onTabChange: onTabChange,
+    ),
+  );
 }

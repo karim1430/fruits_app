@@ -5,9 +5,10 @@ abstract class FirebaseServices {
     String? uId,
   });
 
-  Future<Map<String, dynamic>> getData({
+  Future<dynamic> getData({
     required String path,
-    required String uId,
+    String? uId,
+    Map<String, dynamic>? quary,
   });
   Future<bool> checkIfUserExist({required String path, required String uId});
 }

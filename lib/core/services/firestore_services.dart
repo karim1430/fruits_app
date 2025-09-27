@@ -17,12 +17,33 @@ class FirestoreServices extends FirebaseServices {
   }
 
   @override
-  Future<Map<String, dynamic>> getData({
+  Future<dynamic> getData({
     required String path,
-    required String uId,
+    String? uId,
+    Map<String, dynamic>? quary,
   }) async {
-    var data = await firestore.collection(path).doc(uId).get();
-    return data.data()!;
+    if (uId != null) {
+      var data = await firestore.collection(path).doc(uId).get();
+      return data.data() ?? {};
+    } else {
+      Query<Map<String, dynamic>> data = firestore.collection(path);
+      if (quary != null) {
+        if (quary['orderBy'] != null) {
+          var orderBy = quary['orderBy'];
+          var des = quary['descending'];
+          data.orderBy(orderBy, descending: des);
+        }
+        if (quary['limit'] != null) {
+          var limit = quary['limit'];
+          data.limit(limit);
+        }
+      }
+      var result = await data.get();
+      List<Map<String, dynamic>> products = result.docs
+          .map((e) => e.data())
+          .toList();
+      return products;
+    }
   }
 
   @override

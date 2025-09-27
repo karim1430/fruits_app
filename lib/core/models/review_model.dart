@@ -27,11 +27,11 @@ class ReviewModel {
 
   factory ReviewModel.fromJson(Map<String, dynamic> json) {
     return ReviewModel(
-      name: json['name'],
-      image: json['image'],
-      ratting: json['ratting'],
-      date: json['date'],
-      reviewDescreption: json['reviewDescreption'],
+      name: json['name'] as String? ?? '',
+      image: json['image'] as String? ?? '',
+      ratting: json['ratting'] as num? ?? 0,
+      date: json['date'] as String? ?? '',
+      reviewDescreption: json['reviewDescreption'] as String? ?? '',
     );
   }
 
@@ -43,5 +43,15 @@ class ReviewModel {
       'date': date,
       'reviewDescreption': reviewDescreption,
     };
+  }
+
+  ReviewEntity toEntity() {
+    return ReviewEntity(
+      name: name,
+      image: image,
+      ratting: ratting,
+      date: date,
+      reviewDescreption: reviewDescreption,
+    );
   }
 }
