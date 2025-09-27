@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:fruits_hub/core/utils/app_styles.dart';
-import '../../../home/presentation/views/widgets/the_best_selling_fruit.dart';
+import 'widgets/the_best_selling_fruit.dart';
 import 'widgets/best_selling_view_body.dart';
 
 class BestSellingView extends StatelessWidget {

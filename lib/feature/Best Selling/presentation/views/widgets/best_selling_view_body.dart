@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
 import '../../../../../core/utils/app_styles.dart';
-import '../../../../home/presentation/views/widgets/the_best_selling_fruit.dart';
+import 'the_best_selling_fruit.dart';
 
 class BestSellingViewBody extends StatelessWidget {
   const BestSellingViewBody({super.key});
@@ -57,7 +57,7 @@ class BestSellingViewBody extends StatelessWidget {
                 ),
                 itemCount: 20, // عرض المزيد من المنتجات
                 itemBuilder: (context, index) {
-                  return const TheBestSellingFruit();
+                  // return const TheBestSellingFruit(productEntity:[],);
                 },
               ),
             ),

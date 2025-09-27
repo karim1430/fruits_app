@@ -1,5 +1,6 @@
 import 'dart:io';
 import 'package:fruits_hub/core/entities/product_entity.dart';
+import 'package:fruits_hub/core/helper_functions/get_avg_ratting.dart';
 import 'package:fruits_hub/core/models/review_model.dart';
 
 class ProductModel {
@@ -69,6 +70,7 @@ class ProductModel {
       price: price,
       imageFile: imageFile,
       isFeature: isFeature,
+      imageUrl: imageUrl,
       avgRatting: avgRatting,
       count: count,
       expiration: expiration,

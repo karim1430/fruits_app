@@ -4,10 +4,12 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:fruits_hub/core/cubits/product_cubit/product_cubit.dart';
 import 'package:fruits_hub/core/utils/app_styles.dart';
 import 'package:fruits_hub/core/utils/get_user.dart';
+import 'package:fruits_hub/feature/Best%20Selling/presentation/views/widgets/best_selling_grid_view.dart';
+import 'package:fruits_hub/feature/Best%20Selling/presentation/views/widgets/best_selling_grid_view_bloc_builder.dart';
 import 'package:fruits_hub/feature/home/presentation/views/widgets/fruit_promo_card.dart';
 import 'package:fruits_hub/feature/home/presentation/views/widgets/search_custom.dart';
 import '../../../../Best Selling/presentation/views/best_selling_view.dart';
-import 'the_best_selling_fruit.dart';
+import '../../../../Best Selling/presentation/views/widgets/the_best_selling_fruit.dart';
 
 class HomeViewBody extends StatefulWidget {
   const HomeViewBody({super.key});
@@ -84,55 +86,10 @@ class _HomeViewBodyState extends State<HomeViewBody> {
           ),
           SliverPadding(
             padding: const EdgeInsets.symmetric(horizontal: 17),
-            sliver: SliverGrid.builder(
-              itemCount: 10,
-              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 2,
-                mainAxisSpacing: 8,
-                crossAxisSpacing: 8,
-                childAspectRatio: 0.8,
-              ),
-              itemBuilder: (context, index) {
-                return TheBestSellingFruit();
-              },
-            ),
+            sliver: BestSellingGridViewBlocBuilder(),
           ),
         ],
       ),
     );
   }
 }
-
-
-
-
-// Row(
-//             children: [
-//               Expanded(
-//                 child: Container(
-//                   height: 158,
-
-//                   decoration: BoxDecoration(
-//                     color: Colors.green,
-//                     borderRadius: BorderRadius.only(
-//                       topLeft: Radius.circular(30),
-//                       bottomLeft: Radius.circular(30),
-//                     ),
-//                   ),
-//                 ),
-//               ),
-//               Expanded(
-//                 child: Container(
-//                   height: 158,
-//                   width: double.infinity,
-//                   decoration: BoxDecoration(
-//                     color: Colors.grey,
-//                     borderRadius: BorderRadius.only(
-//                       // bottomLeft: Radius.circular(50),
-//                       // bottomRight: Radius.circular(50),
-//                     ),
-//                   ),
-//                 ),
-//               ),
-//             ],
-//           ),

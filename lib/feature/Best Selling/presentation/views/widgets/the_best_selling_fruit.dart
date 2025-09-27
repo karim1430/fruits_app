@@ -1,15 +1,19 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:fruits_hub/core/utils/constants.dart';
-
+import 'package:fruits_hub/core/widgets/safe_svg_widget.dart';
+import '../../../../../core/entities/product_entity.dart';
 import '../../../../../core/utils/app_styles.dart';
 
 class TheBestSellingFruit extends StatelessWidget {
-  const TheBestSellingFruit({super.key});
-
+  const TheBestSellingFruit({super.key, required this.productEntity});
+  final ProductEntity productEntity;
   @override
   Widget build(BuildContext context) {
+    log(productEntity.imageUrl.toString());
     return Card(
       color: Color(0xffF3F5F7),
       child: Padding(
@@ -30,13 +34,34 @@ class TheBestSellingFruit extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 8),
               child: Center(
-                child: SizedBox(height: 80),
-                //  SvgPicture.asset(
-                //   'assets/Avocado_photo.svg',
-                //   height: 80,
-                //   color: Colors.red,
-                // ),
+                child: Image.network(
+                  productEntity.imageUrl!,
+                  height: 80,
+                  width: 80,
+                  errorBuilder: (context, error, stackTrace) {
+                    log(
+                      'Image loading error for ${productEntity.imageUrl}: $error',
+                    );
+                    return SizedBox(
+                      height: 80,
+                      child: Icon(Icons.broken_image),
+                    );
+                  },
+                ),
               ),
+              //  Center(
+              //   child: productEntity.imageUrl == null
+              //       ? SizedBox(height: 80, child: Icon(Icons.image))
+              //       : SafeSvgWidget.network(
+              //           productEntity.imageUrl!,
+              //           width: 80,
+              //           height: 80,
+              //           // fallbackWidget: SizedBox(
+              //           //   height: 80,
+              //           //   child: Icon(Icons.broken_image),
+              //           // ),
+              //         ),
+              // ),
             ),
             SizedBox(height: 8),
             Row(
