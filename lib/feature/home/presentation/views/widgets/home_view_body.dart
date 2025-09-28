@@ -6,6 +6,7 @@ import 'package:fruits_hub/core/routing/app_router.dart';
 import 'package:fruits_hub/core/routing/routes.dart';
 import 'package:fruits_hub/core/utils/app_styles.dart';
 import 'package:fruits_hub/core/utils/get_user.dart';
+import 'package:fruits_hub/core/widgets/best_selling_and_more.dart';
 import 'package:fruits_hub/feature/Best%20Selling/presentation/views/widgets/best_selling_grid_view.dart';
 import 'package:fruits_hub/feature/Best%20Selling/presentation/views/widgets/best_selling_grid_view_bloc_builder.dart';
 import 'package:fruits_hub/feature/home/presentation/views/widgets/fruit_promo_card.dart';
@@ -65,21 +66,7 @@ class _HomeViewBodyState extends State<HomeViewBody> {
           SliverToBoxAdapter(
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 17),
-              child: Row(
-                children: [
-                  Text(
-                    'الأكثر مبيعًا',
-                    style: AppStyles.textStyleBold16.copyWith(fontSize: 20),
-                  ),
-                  Spacer(),
-                  TextButton(
-                    onPressed: () {
-                      Navigator.of(context).pushNamed(Routes.bestSellingView);
-                    },
-                    child: Text('المزيد', style: AppStyles.textStyleBold13),
-                  ),
-                ],
-              ),
+              child: BestSellingAndMore(),
             ),
           ),
           SliverPadding(

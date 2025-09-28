@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import '../../../../products/presentation/views/widgets/custom_show_model_bottom_sheet.dart';
 
 class SearchCustom extends StatelessWidget {
   const SearchCustom({super.key});
@@ -13,8 +14,17 @@ class SearchCustom extends StatelessWidget {
         decoration: BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.circular(12),
-          border: Border.all(color: Color(0xffE0E0E0)),
+
+          border: Border.all(color: Color(0xffF3F5F7)),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black12.withOpacity(0.05),
+              blurRadius: 10,
+              offset: Offset(0, 4),
+            ),
+          ],
         ),
+
         child: Row(
           children: [
             SvgPicture.asset('assets/search_icon.svg', width: 20, height: 20),
@@ -33,7 +43,7 @@ class SearchCustom extends StatelessWidget {
                 ),
               ),
             ),
-            SvgPicture.asset('assets/setting_icon.svg', width: 20, height: 20),
+            CustomShowModalBottomSheet(),
           ],
         ),
       ),
