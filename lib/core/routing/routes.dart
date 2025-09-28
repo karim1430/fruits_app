@@ -8,4 +8,5 @@ class Routes {
   static const String checkView = '/check';
   static const String newPasswordView = '/newPassword';
   static const String signUpview = '/signUp';
+  static const String bestSellingView = '/bestSelling';
 }

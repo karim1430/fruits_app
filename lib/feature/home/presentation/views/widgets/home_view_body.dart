@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:fruits_hub/core/cubits/product_cubit/product_cubit.dart';
+import 'package:fruits_hub/core/routing/app_router.dart';
+import 'package:fruits_hub/core/routing/routes.dart';
 import 'package:fruits_hub/core/utils/app_styles.dart';
 import 'package:fruits_hub/core/utils/get_user.dart';
 import 'package:fruits_hub/feature/Best%20Selling/presentation/views/widgets/best_selling_grid_view.dart';
@@ -72,11 +74,7 @@ class _HomeViewBodyState extends State<HomeViewBody> {
                   Spacer(),
                   TextButton(
                     onPressed: () {
-                      Navigator.of(context).push(
-                        MaterialPageRoute(
-                          builder: (context) => BestSellingView(),
-                        ),
-                      );
+                      Navigator.of(context).pushNamed(Routes.bestSellingView);
                     },
                     child: Text('المزيد', style: AppStyles.textStyleBold13),
                   ),

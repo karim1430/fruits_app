@@ -2,6 +2,7 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:fruits_hub/core/routing/routes.dart';
+import 'package:fruits_hub/feature/Best%20Selling/presentation/views/best_selling_view.dart';
 import 'package:fruits_hub/feature/home/presentation/views/home_view.dart';
 import 'package:fruits_hub/feature/auth/presentation/views/check_view.dart';
 import 'package:fruits_hub/feature/auth/presentation/views/login_view.dart';
@@ -31,6 +32,8 @@ class AppRouter {
         return _createRoute(NewPasswordView());
       case Routes.signUpview:
         return _createRoute(SignUpView());
+      case Routes.bestSellingView:
+        return _createRoute(BestSellingView());
       // case Routes.splashScreen:
       //   return _createRoute(const SplashScreen());
       // case Routes.onBoardingScreen:

@@ -1,10 +1,8 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:fruits_hub/core/utils/constants.dart';
-import 'package:fruits_hub/core/widgets/safe_svg_widget.dart';
 import '../../../../../core/entities/product_entity.dart';
 import '../../../../../core/utils/app_styles.dart';
 
@@ -49,19 +47,6 @@ class TheBestSellingFruit extends StatelessWidget {
                   },
                 ),
               ),
-              //  Center(
-              //   child: productEntity.imageUrl == null
-              //       ? SizedBox(height: 80, child: Icon(Icons.image))
-              //       : SafeSvgWidget.network(
-              //           productEntity.imageUrl!,
-              //           width: 80,
-              //           height: 80,
-              //           // fallbackWidget: SizedBox(
-              //           //   height: 80,
-              //           //   child: Icon(Icons.broken_image),
-              //           // ),
-              //         ),
-              // ),
             ),
             SizedBox(height: 8),
             Row(
@@ -73,7 +58,7 @@ class TheBestSellingFruit extends StatelessWidget {
                     mainAxisSize: MainAxisSize.min,
                     children: [
                       Text(
-                        'الفراوله',
+                        productEntity.name,
                         style: AppStyles.textStyleSemi13.copyWith(
                           color: Colors.black,
                         ),
@@ -81,7 +66,7 @@ class TheBestSellingFruit extends StatelessWidget {
                       ),
                       SizedBox(height: 4),
                       Text(
-                        '30جنية / الكيلو',
+                        '${productEntity.price}جنية / الكيلو',
                         style: AppStyles.textStyleBold13.copyWith(
                           color: Colors.amberAccent,
                         ),
