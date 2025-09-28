@@ -4,9 +4,9 @@ import 'package:fruits_hub/core/widgets/app_bar_widget.dart';
 import 'package:fruits_hub/core/widgets/best_selling_and_more.dart';
 import 'package:fruits_hub/core/widgets/custom_circle_avatar.dart';
 import 'package:fruits_hub/feature/Best%20Selling/presentation/views/widgets/best_selling_grid_view_bloc_builder.dart';
-import '../../../../../core/routing/routes.dart';
 import '../../../../../core/utils/app_styles.dart';
 import '../../../../home/presentation/views/widgets/search_custom.dart';
+import 'clissify_less_or_more_price_show_modal.dart';
 
 class ProductViewBody extends StatelessWidget {
   const ProductViewBody({super.key});
@@ -29,8 +29,8 @@ class ProductViewBody extends StatelessWidget {
                   ),
                   Spacer(),
                   TextButton(
-                    onPressed: () {
-                      Navigator.of(context).pushNamed(Routes.bestSellingView);
+                    onPressed: () async {
+                      await classifyLessOrMorePriceShowModal(context);
                     },
                     child: Container(
                       padding: const EdgeInsets.symmetric(

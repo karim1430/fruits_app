@@ -1,9 +1,9 @@
+import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:fruits_hub/core/widgets/custom_elevated_button.dart';
-import 'package:fruits_hub/feature/products/presentation/views/widgets/classify_price.dart';
-
 import '../../../../../core/utils/app_styles.dart';
+import 'price_range_slider.dart';
 
 class CustomShowModalBottomSheet extends StatefulWidget {
   const CustomShowModalBottomSheet({super.key});
@@ -43,17 +43,6 @@ class _CustomShowModalBottomSheetState
                     Text('السعر :', style: AppStyles.textStyleBold16),
                   ],
                 ),
-                SizedBox(height: 16),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    ClassifyPrice(price: StartPrice),
-                    SizedBox(width: 14),
-                    Text('الي', style: AppStyles.textStyleBold16),
-                    SizedBox(width: 14),
-                    ClassifyPrice(price: EndPrice),
-                  ],
-                ),
                 SizedBox(height: 20),
                 PriceRangeSlider(
                   onChanged: (RangeValues p1) {
@@ -71,7 +60,13 @@ class _CustomShowModalBottomSheetState
                     Expanded(
                       child: CustomElevatedButton(
                         buttonText: 'تصفية',
-                        onPressed: () {},
+                        onPressed: () {
+                          setState(() {
+                            log(
+                              'Start Price: $StartPrice, End Price: $EndPrice',
+                            );
+                          });
+                        },
                       ),
                     ),
                   ],
@@ -82,70 +77,6 @@ class _CustomShowModalBottomSheetState
         );
       },
       child: SvgPicture.asset('assets/setting_icon.svg', width: 20, height: 20),
-    );
-  }
-}
-
-class PriceRangeSlider extends StatefulWidget {
-  final Function(RangeValues) onChanged; // callback
-
-  const PriceRangeSlider({super.key, required this.onChanged});
-
-  @override
-  _PriceRangeSliderState createState() => _PriceRangeSliderState();
-}
-
-class _PriceRangeSliderState extends State<PriceRangeSlider> {
-  RangeValues _currentRangeValues = const RangeValues(0, 300);
-
-  @override
-  Widget build(BuildContext context) {
-    return Directionality(
-      textDirection: TextDirection.rtl,
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          // Labels
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text(
-                "\$${_currentRangeValues.start.round()}",
-                style: const TextStyle(
-                  fontSize: 16,
-                  color: Colors.green,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-              Text(
-                "\$${_currentRangeValues.end.round()}",
-                style: const TextStyle(
-                  fontSize: 16,
-                  color: Colors.green,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-            ],
-          ),
-          const SizedBox(height: 8),
-
-          // RangeSlider
-          RangeSlider(
-            values: _currentRangeValues,
-            min: 0,
-            max: 1000,
-            divisions: 100,
-            activeColor: Colors.green[900],
-            inactiveColor: Colors.grey[300],
-            onChanged: (RangeValues values) {
-              setState(() {
-                _currentRangeValues = values;
-              });
-              widget.onChanged(values); // نرجع القيم لبره
-            },
-          ),
-        ],
-      ),
     );
   }
 }
