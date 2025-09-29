@@ -3,8 +3,8 @@ import 'package:flutter_svg/svg.dart';
 import '../../../../products/presentation/views/widgets/custom_show_model_bottom_sheet.dart';
 
 class SearchCustom extends StatelessWidget {
-  const SearchCustom({super.key});
-
+  const SearchCustom({super.key, required this.isResultPage});
+  final ValueChanged<bool> isResultPage;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -43,7 +43,7 @@ class SearchCustom extends StatelessWidget {
                 ),
               ),
             ),
-            CustomShowModalBottomSheet(),
+            CustomShowModalBottomSheet(isResultPage: isResultPage),
           ],
         ),
       ),

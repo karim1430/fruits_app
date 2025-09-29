@@ -4,7 +4,10 @@ import 'package:fruits_hub/core/widgets/custom_elevated_button.dart';
 
 import '../../../../../core/widgets/custom_check_box.dart';
 
-Future<dynamic> classifyLessOrMorePriceShowModal(BuildContext context) {
+Future<dynamic> classifyLessOrMorePriceShowModal(
+  BuildContext context,
+  ValueChanged<bool> isResultPage,
+) {
   int? selectedIndex;
 
   return showModalBottomSheet(
@@ -51,7 +54,10 @@ Future<dynamic> classifyLessOrMorePriceShowModal(BuildContext context) {
                       buttonText: 'تصفية',
                       onPressed: () {
                         print("Selected Index: $selectedIndex");
-                        Navigator.pop(context);
+                        setState(() {
+                          // Navigator.pop(context);
+                          isResultPage(true);
+                        });
                       },
                     ),
                   ),

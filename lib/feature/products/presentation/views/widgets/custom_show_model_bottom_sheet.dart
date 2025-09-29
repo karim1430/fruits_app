@@ -6,8 +6,8 @@ import '../../../../../core/utils/app_styles.dart';
 import 'price_range_slider.dart';
 
 class CustomShowModalBottomSheet extends StatefulWidget {
-  const CustomShowModalBottomSheet({super.key});
-
+  const CustomShowModalBottomSheet({super.key, required this.isResultPage});
+  final ValueChanged<bool> isResultPage;
   @override
   State<CustomShowModalBottomSheet> createState() =>
       _CustomShowModalBottomSheetState();
@@ -65,6 +65,8 @@ class _CustomShowModalBottomSheetState
                             log(
                               'Start Price: $StartPrice, End Price: $EndPrice',
                             );
+                            // Navigator.pop(context);
+                            widget.isResultPage(true);
                           });
                         },
                       ),

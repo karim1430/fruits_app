@@ -50,7 +50,9 @@ class _HomeViewBodyState extends State<HomeViewBody> {
               ),
             ),
           ),
-          SliverToBoxAdapter(child: SearchCustom()),
+          SliverToBoxAdapter(
+            child: SearchCustom(isResultPage: (bool value) {}),
+          ),
           SliverToBoxAdapter(
             child: SizedBox(
               height: 180,
