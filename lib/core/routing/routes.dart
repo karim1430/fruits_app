@@ -9,4 +9,6 @@ class Routes {
   static const String newPasswordView = '/newPassword';
   static const String signUpview = '/signUp';
   static const String bestSellingView = '/bestSelling';
+  static const String detailsItemView = '/detailsItem';
+  static const String reviewsView = '/reviewsView';
 }

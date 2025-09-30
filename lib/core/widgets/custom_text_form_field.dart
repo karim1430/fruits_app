@@ -13,6 +13,7 @@ class CustomTextFormField extends StatelessWidget {
     this.suffixIcon,
     this.onSaved,
     this.validator,
+    this.maxLines,
   });
   final TextInputType? keyboardType;
   final String labelText;
@@ -21,10 +22,12 @@ class CustomTextFormField extends StatelessWidget {
   final Widget? suffixIcon;
   final void Function(String?)? onSaved;
   final String? Function(String?)? validator;
+  final int? maxLines;
   // final GlobalKey<FormState> formKey = GlobalKey();
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      maxLines: maxLines ?? 1,
       onSaved: onSaved,
       obscureText: obscureText ?? false,
       keyboardType: keyboardType ?? TextInputType.text,

@@ -10,6 +10,8 @@ import 'package:fruits_hub/feature/auth/presentation/views/new_password_view.dar
 import 'package:fruits_hub/feature/auth/presentation/views/password_recovery_view.dart';
 import 'package:fruits_hub/feature/onboarding/presentation/views/onboarding_view.dart';
 import 'package:fruits_hub/feature/auth/presentation/views/sign_up_view.dart';
+import 'package:fruits_hub/feature/shopping/presentation/views/item_details_view.dart';
+import 'package:fruits_hub/feature/shopping/presentation/views/review_and_rating_view.dart';
 import 'package:fruits_hub/feature/splash/presentation/views/splash_view.dart';
 
 class AppRouter {
@@ -34,6 +36,11 @@ class AppRouter {
         return _createRoute(SignUpView());
       case Routes.bestSellingView:
         return _createRoute(BestSellingView());
+      case Routes.detailsItemView:
+        return _createRoute(ItemDetailsView());
+      case Routes.reviewsView:
+        return _createRoute(ReviewAndRatingView());
+
       // case Routes.splashScreen:
       //   return _createRoute(const SplashScreen());
       // case Routes.onBoardingScreen:

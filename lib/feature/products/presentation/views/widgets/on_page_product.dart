@@ -16,7 +16,7 @@ class OnPageProduct extends StatelessWidget {
   Widget build(BuildContext context) {
     return CustomScrollView(
       slivers: [
-        SliverToBoxAdapter(child: AppBarWidget()),
+        SliverToBoxAdapter(child: AppBarWidget(title: 'منتجاتنا')),
         SliverToBoxAdapter(child: SearchCustom(isResultPage: isResultPage)),
         SliverToBoxAdapter(
           child: Padding(

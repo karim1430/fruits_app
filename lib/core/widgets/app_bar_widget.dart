@@ -3,8 +3,8 @@ import 'package:flutter_svg/svg.dart';
 import 'package:fruits_hub/core/utils/app_styles.dart';
 
 class AppBarWidget extends StatelessWidget {
-  const AppBarWidget({super.key});
-
+  const AppBarWidget({super.key, required this.title});
+  final String title;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -13,10 +13,7 @@ class AppBarWidget extends StatelessWidget {
         children: [
           const Spacer(flex: 2),
 
-          Text(
-            'منتجاتنا',
-            style: AppStyles.textStyleBold16.copyWith(fontSize: 20),
-          ),
+          Text(title, style: AppStyles.textStyleBold16.copyWith(fontSize: 20)),
           SizedBox(width: 35),
           const Spacer(),
           CircleAvatar(
