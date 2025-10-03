@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:fruits_hub/feature/shopping/presentation/manager/cubit/shopping_cart_cubit.dart';
 
 class IncrementAndDecrementItem extends StatefulWidget {
-  const IncrementAndDecrementItem({super.key});
-
+  const IncrementAndDecrementItem({super.key, required this.index});
+  final int index;
   @override
   State<IncrementAndDecrementItem> createState() =>
       _IncrementAndDecrementItemState();
@@ -10,6 +12,11 @@ class IncrementAndDecrementItem extends StatefulWidget {
 
 class _IncrementAndDecrementItemState extends State<IncrementAndDecrementItem> {
   int quantity = 1;
+  @override
+  void initState() {
+    quantity = context.read<ShoppingCartCubit>().cartItems[widget.index].count;
+    super.initState();
+  }
 
   void _incrementQuantity() {
     setState(() {
@@ -36,7 +43,7 @@ class _IncrementAndDecrementItemState extends State<IncrementAndDecrementItem> {
         ),
         const SizedBox(width: 12),
         Text(
-          '$quantity',
+          '${quantity}',
           style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
         ),
         const SizedBox(width: 12),

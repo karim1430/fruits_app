@@ -45,6 +45,7 @@ class _FoodItemCardListViewState extends State<FoodItemCardListView> {
               price: cartEntities[index].product.price.toDouble(),
               imageUrl: cartEntities[index].product.imageUrl!,
               count: cartEntities[index].count,
+              index: index,
             );
           },
         );

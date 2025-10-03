@@ -10,16 +10,16 @@ class ShoppingCartCubit extends Cubit<ShoppingCartState> {
 
   void addToCart({required CartEntity cartEntity}) {
     try {
-      for (var element in cartItems) {
-        if (element.product.code == cartEntity.product.code) {
-          int index = cartItems.indexOf(cartEntity);
-          cartItems[index].count++;
-          emit(ShoppingCartUpdated(cartItems[index].count));
-          log(
-            '=================${cartItems[index].count.toString()}===========================',
-          );
-          return;
-        }
+      final int existingIndex = cartItems.indexWhere(
+        (element) => element.product.code == cartEntity.product.code,
+      );
+      if (existingIndex != -1) {
+        cartItems[existingIndex].count++;
+        emit(ShoppingCartAdded());
+        log(
+          '===============${cartItems[existingIndex].count.toString()}===========',
+        );
+        return;
       }
       cartItems.add(CartEntity(product: cartEntity.product, count: 1));
       emit(ShoppingCartAdded());

@@ -45,7 +45,7 @@ class ItemDetailsViewBody extends StatelessWidget {
                       ),
 
                       // الأزرار (زيادة/نقصان)
-                      IncrementAndDecrementItem(),
+                      IncrementAndDecrementItem(index: 0),
                     ],
                   ),
                   SizedBox(height: 10),

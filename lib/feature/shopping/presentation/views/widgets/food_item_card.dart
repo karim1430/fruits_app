@@ -9,6 +9,7 @@ class FoodItemCard extends StatefulWidget {
   final double price;
   final String imageUrl;
   final int count;
+  final int index;
 
   const FoodItemCard({
     super.key,
@@ -17,6 +18,7 @@ class FoodItemCard extends StatefulWidget {
     required this.price,
     required this.imageUrl,
     required this.count,
+    required this.index,
   });
 
   @override
@@ -127,7 +129,7 @@ class _FoodItemCardState extends State<FoodItemCard> {
                   const SizedBox(height: 8),
                   Row(
                     children: [
-                      IncrementAndDecrementItem(),
+                      IncrementAndDecrementItem(index: widget.index),
 
                       const Spacer(),
                       Text(
