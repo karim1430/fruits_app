@@ -1,10 +1,13 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:fruits_hub/core/utils/constants.dart';
 import '../../../../../core/entities/product_entity.dart';
 import '../../../../../core/utils/app_styles.dart';
+import '../../../../shopping/domain/entities/cart_entity.dart';
+import '../../../../shopping/presentation/manager/cubit/shopping_cart_cubit.dart';
 
 class TheBestSellingFruit extends StatelessWidget {
   const TheBestSellingFruit({super.key, required this.productEntity});
@@ -76,17 +79,28 @@ class TheBestSellingFruit extends StatelessWidget {
                   ),
                 ),
                 SizedBox(width: 8),
-                Container(
-                  height: 32,
-                  width: 32,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(24),
-                    color: kPrimaryColor,
-                  ),
-                  child: Icon(
-                    FontAwesomeIcons.plus,
-                    size: 16,
-                    color: Colors.white,
+                GestureDetector(
+                  onTap: () {
+                    // Add to cart functionality to be implemented
+                    context.read<ShoppingCartCubit>().addToCart(
+                      cartEntity: CartEntity(product: productEntity),
+                    );
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(content: Text('تم إضافة المنتج إلى سلة التسوق')),
+                    );
+                  },
+                  child: Container(
+                    height: 32,
+                    width: 32,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(24),
+                      color: kPrimaryColor,
+                    ),
+                    child: Icon(
+                      FontAwesomeIcons.plus,
+                      size: 16,
+                      color: Colors.white,
+                    ),
                   ),
                 ),
               ],

@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fruits_hub/core/utils/app_styles.dart';
 import 'package:fruits_hub/core/widgets/custom_elevated_button.dart';
 import '../../../../../core/widgets/app_bar_title_and_arrow_widget.dart';
+import '../../manager/cubit/shopping_cart_cubit.dart';
 import 'food_item_card_list_view.dart';
 
 class ShoppingViewBody extends StatelessWidget {
@@ -23,7 +25,7 @@ class ShoppingViewBody extends StatelessWidget {
                   padding: const EdgeInsets.only(top: 10, bottom: 10),
                   child: Center(
                     child: Text(
-                      'لديك 3 منتجات في سله التسوق',
+                      'لديك ${context.watch<ShoppingCartCubit>().cartItems.length} منتجات في سله التسوق',
                       style: AppStyles.textStyleSemi13.copyWith(
                         color: Color(0xff1B5E37),
                       ),

@@ -8,6 +8,7 @@ class FoodItemCard extends StatefulWidget {
   final String weight;
   final double price;
   final String imageUrl;
+  final int count;
 
   const FoodItemCard({
     super.key,
@@ -15,6 +16,7 @@ class FoodItemCard extends StatefulWidget {
     required this.weight,
     required this.price,
     required this.imageUrl,
+    required this.count,
   });
 
   @override
@@ -26,7 +28,7 @@ class _FoodItemCardState extends State<FoodItemCard> {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Navigator.of(context).popAndPushNamed(Routes.detailsItemView);
+        Navigator.of(context).pushNamed(Routes.detailsItemView);
       },
       child: Container(
         decoration: BoxDecoration(
